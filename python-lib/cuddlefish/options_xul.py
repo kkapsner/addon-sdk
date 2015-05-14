@@ -64,8 +64,6 @@ def parse_options(options, jetpack_id, preferencesBranch):
 
         if ("description" in pref):
             setting.appendChild(doc.createTextNode(pref["description"]))
-        if ("style" in pref):
-            setting.setAttribute("style", pref["style"])
 
         if (pref["type"] == "control"):
             button = doc.createElement("button")
@@ -83,12 +81,9 @@ def parse_options(options, jetpack_id, preferencesBranch):
             menulist = doc.createElement("menulist")
             menupopup = doc.createElement("menupopup")
             for item in pref["options"]:
-                if item["value"] == "" and item["label"] == "":
-                    menuitem = doc.createElement("menuseparator")
-                else:
-                    menuitem = doc.createElement("menuitem")
-                    menuitem.setAttribute("value", item["value"])
-                    menuitem.setAttribute("label", item["label"])
+                menuitem = doc.createElement("menuitem")
+                menuitem.setAttribute("value", item["value"])
+                menuitem.setAttribute("label", item["label"])
                 menupopup.appendChild(menuitem)
             menulist.appendChild(menupopup)
             setting.appendChild(menulist)
